@@ -79,7 +79,7 @@ async def artikle_geber(message: Message):
                 atw_satz = f'<b>{neue_wort}</b>\n<b><i>English = {gleiche}</i></b>'
                 await message.answer(atw_satz)
             else:
-                await message.answer(neue_wort)
+                await message.answer(f'<b>{neue_wort}</b>')
             break
     if test_art == '':
         att = await message.answer("Ich weiss nicht diesen Word")
