@@ -1,0 +1,13 @@
+aiogram==3.7.0
+pydantic-settings==2.2.1
+sqlalchemy==2.0.23
+asyncpg==0.29.0
+bs4==0.0.2
+requests==2.31.0
+fake-useragent==1.5.1
+lxml==5.2.2
+
+
+
+
+
