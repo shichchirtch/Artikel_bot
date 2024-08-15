@@ -60,9 +60,10 @@ async def artikle_geber(message: Message):
 
         req = requests.get(url=zapros, headers=site_headers)
         if req.status_code == 200:
+            req.encoding = 'utf-8'
             test_art = art
             print(art)
-            neue_wort = art + ' '+ message.text.strip().capitalize()+'\n'
+            neue_wort = art + ' '+ message.text.strip().capitalize()
             if c == 1:
                 await insert_neue_wort_in_der(user_id, neue_wort)
             elif c==2:
@@ -72,14 +73,47 @@ async def artikle_geber(message: Message):
 
             soup = bs(req.text, 'lxml')
             english_gleiche = soup.find(class_='container text-center my-auto').find_all('span')
-            if len(english_gleiche)>1:
+
+            plural_form = soup.find(class_='table')
+            if plural_form:
+                two_step_plural_form = plural_form.find_all('tr')
+
+                full_nominative = two_step_plural_form[1]
+                nur_plural = full_nominative.find_all('td')
+                if nur_plural[2].text.strip() == '-':
+                    plural_data = 'Nur Singular !'
+                else:
+                    plural_data = nur_plural[2].text
+            else:
+                plural_data = ''
+
+            if len(english_gleiche) > 1:
                 eng_analog = english_gleiche[1].text
                 print('english_gleiche = ', english_gleiche)
                 gleiche = eng_analog.split()[1].capitalize()
-                atw_satz = f'<b>{neue_wort}</b>\n<b><i>English = {gleiche}</i></b>'
-                await message.answer(atw_satz)
+
+                if plural_data:
+                    atw_satz = f'<b>{neue_wort};</b>  Plural Form  <b>{plural_data}</b>\n<b><i>English = {gleiche}</i></b>'
+                    await message.answer(atw_satz)
+                else:
+                    atw_satz = f'<b>{neue_wort}</b>\n<b><i>English = {gleiche}</i></b>'
+                    await message.answer(atw_satz)
             else:
-                await message.answer(f'<b>{neue_wort}</b>')
+                if plural_data:
+                    atw_satz = f'<b>{neue_wort};</b>  Plural Form  <b>{plural_data}</b>'
+                    await message.answer(atw_satz)
+                else:
+                    antwort = f'{neue_wort}'
+                    await message.answer(antwort)
+
+            # if len(english_gleiche)>1:
+            #     eng_analog = english_gleiche[1].text
+            #     print('english_gleiche = ', english_gleiche)
+            #     gleiche = eng_analog.split()[1].capitalize()
+            #     atw_satz = f'<b>{neue_wort}</b>\n<b><i>English = {gleiche}</i></b>'
+            #     await message.answer(atw_satz)
+            # else:
+            #     await message.answer(f'<b>{neue_wort}</b>')
             break
     if test_art == '':
         att = await message.answer("Ich weiss nicht diesen Word")
