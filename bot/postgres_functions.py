@@ -24,7 +24,7 @@ async def insert_neue_wort_in_der(user_id:int, neue_wort):
         query = await session.execute(select(User).filter(User.tg_us_id == user_id))
         needed_data = query.scalar()
         previous = needed_data.der
-        updated_str = previous+neue_wort
+        updated_str = previous+'\n'+ neue_wort
         needed_data.der = updated_str
         await session.commit()
 
@@ -33,7 +33,7 @@ async def insert_neue_wort_in_die(user_id:int, neue_wort):
         query = await session.execute(select(User).filter(User.tg_us_id == user_id))
         needed_data = query.scalar()
         previous = needed_data.die
-        updated_str = previous+neue_wort
+        updated_str = previous+'\n'+ neue_wort
         needed_data.die = updated_str
         await session.commit()
 
@@ -42,7 +42,7 @@ async def insert_neue_wort_in_das(user_id:int, neue_wort):
         query = await session.execute(select(User).filter(User.tg_us_id == user_id))
         needed_data = query.scalar()
         previous = needed_data.das
-        updated_str = previous+neue_wort
+        updated_str = previous+'\n'+ neue_wort
         needed_data.das = updated_str
         await session.commit()
 
