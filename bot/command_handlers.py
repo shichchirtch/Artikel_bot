@@ -95,7 +95,7 @@ async def artikle_geber(message: Message):
                 else:
                     gleiche = eng_analog[-1].capitalize()
                 print('eng_analog.split() = ', eng_analog.split())
-
+                print('gleiche = ', gleiche)
                 if plural_data:
                     atw_satz = f'<b>{neue_wort};</b>  Plural Form  <b>{plural_data}</b>\n<b><i>English = {gleiche}</i></b>'
                     await message.answer(atw_satz)
