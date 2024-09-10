@@ -95,7 +95,7 @@ async def artikle_geber(message: Message):
                 if ', ' in eng_analog:
                     gleiche = eng_analog.split(', ')[-1].capitalize()
                 else:
-                    if len(eng_analog)>2:
+                    if len(eng_analog.split())>2:
                         g = eng_analog.split()
                         print('g1 = ', g)
                         gleiche = g[-2].capitalize() + ' '+ g[-1]
