@@ -90,10 +90,18 @@ async def artikle_geber(message: Message):
             if len(english_gleiche) > 1:
                 eng_analog = english_gleiche[-1].text
                 print('english_gleiche = ', english_gleiche)
-                if ' ' in eng_analog:
+                if ', ' in eng_analog:
                     gleiche = eng_analog.split(', ')[-1].capitalize()
                 else:
-                    gleiche = eng_analog[-1].capitalize()
+                    gl = eng_analog.split()[-1]
+                    if len(gl)>2:
+                        g = gl.split()
+                        print('g1 = ', g)
+                        gleiche = g[-2].capitalize() + ' '+ g[-1]
+                    else:
+                        g = gl.split()
+                        print('g2 = ', g)
+                        gleiche = g[-1].capitalize()
                 print('eng_analog.split() = ', eng_analog.split())
                 print('gleiche = ', gleiche)
                 if plural_data:
