@@ -95,8 +95,6 @@ async def artikle_geber(message: Message):
                 if ', ' in eng_analog:
                     gleiche = eng_analog.split(', ')[-1].capitalize()
                 else:
-                    # gl = eng_analog.split()[-1]
-                    # print('gl = ', gl)
                     if len(eng_analog)>2:
                         g = eng_analog.split()
                         print('g1 = ', g)
