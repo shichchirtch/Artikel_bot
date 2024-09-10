@@ -90,20 +90,22 @@ async def artikle_geber(message: Message):
             if len(english_gleiche) > 1:
                 eng_analog = english_gleiche[-1].text
                 print('english_gleiche = ', english_gleiche)
+                print('eng_analog.split() = ', eng_analog.split())
+                print('eng_analog = ', eng_analog)
                 if ', ' in eng_analog:
                     gleiche = eng_analog.split(', ')[-1].capitalize()
                 else:
-                    gl = eng_analog.split()[-1]
-                    print('gl = ', gl)
-                    if len(gl)>2:
-                        g = gl.split()
+                    # gl = eng_analog.split()[-1]
+                    # print('gl = ', gl)
+                    if len(eng_analog)>2:
+                        g = eng_analog.split()
                         print('g1 = ', g)
                         gleiche = g[-2].capitalize() + ' '+ g[-1]
                     else:
-                        g = gl.split()
+                        g = eng_analog.split()
                         print('g2 = ', g)
                         gleiche = g[-1].capitalize()
-                print('eng_analog.split() = ', eng_analog.split())
+
                 print('gleiche = ', gleiche)
                 if plural_data:
                     atw_satz = f'<b>{neue_wort};</b>  Plural Form  <b>{plural_data}</b>\n<b><i>English = {gleiche}</i></b>'
