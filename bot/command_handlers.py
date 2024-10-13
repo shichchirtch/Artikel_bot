@@ -65,7 +65,7 @@ async def artikle_geber(message: Message):
             req.encoding = 'utf-8'
             test_art = art
             print(art)
-            neue_wort = art + ' '+ message.text.strip().capitalize()
+            neue_wort = art + ' '+ suchend_word.strip().capitalize()
             if c == 1:
                 await insert_neue_wort_in_der(user_id, neue_wort)
             elif c==2:
@@ -91,22 +91,22 @@ async def artikle_geber(message: Message):
 
             if len(english_gleiche) > 1:
                 eng_analog = english_gleiche[-1].text
-                print('english_gleiche = ', english_gleiche)
-                print('eng_analog.split() = ', eng_analog.split())
-                print('eng_analog = ', eng_analog)
+                # print('english_gleiche = ', english_gleiche)
+                # print('eng_analog.split() = ', eng_analog.split())
+                # print('eng_analog = ', eng_analog)
                 if ', ' in eng_analog:
                     gleiche = eng_analog.split(', ')[-1].capitalize()
                 else:
                     if len(eng_analog.split())>2:
                         g = eng_analog.split()
-                        print('g1 = ', g)
+                        # print('g1 = ', g)
                         gleiche = g[-2].capitalize() + ' '+ g[-1]
                     else:
                         g = eng_analog.split()
-                        print('g2 = ', g)
+                        # print('g2 = ', g)
                         gleiche = g[-1].capitalize()
 
-                print('gleiche = ', gleiche)
+                # print('gleiche = ', gleiche)
                 if plural_data:
                     atw_satz = f'<b>{neue_wort};</b>  Plural Form  <b>{plural_data}</b>\n<b><i>English = {gleiche}</i></b>'
                     await message.answer(atw_satz)
