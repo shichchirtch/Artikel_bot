@@ -48,7 +48,9 @@ async def before_start(message: Message):
 async def artikle_geber(message: Message):
     user_id = message.from_user.id
     suchend_word = message.text
-    print(suchend_word.capitalize())
+    if suchend_word.lower().startswith('die ') or suchend_word.lower().startswith('der ') or suchend_word.lower().startswith('das '):
+        suchend_word = suchend_word[4:]
+    # print(suchend_word.capitalize())
     art_kit = ('der', 'die', 'das')
     c = 0
     test_art = ''
